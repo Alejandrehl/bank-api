@@ -226,7 +226,7 @@ class PayLoan(Resource):
 api.add_resource(Register, '/register')
 api.add_resource(Add, '/add')
 api.add_resource(Transfer, '/transfer')
-api.add_resource(Balance, '/balancd')
+api.add_resource(Balance, '/balance')
 api.add_resource(TakeLoan, '/takeloan')
 api.add_resource(PayLoan, '/payloan')
 
