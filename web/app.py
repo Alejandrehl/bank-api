@@ -159,6 +159,50 @@ class Transfer(Resource):
 
         return jsonify(generateReturnDictionary(200, "Amount transfered sucessfully."))
 
+class Balance(Resource):
+    def post(self):
+        postedData = request.get_json()
+
+        username = postedData["username"]
+        password = postedData["password"]
+
+        retJson, error = verifyCredentials(username, password)
+
+        if error:
+            return jsonify(retJson)
+        
+        retJson = users.find({
+            "username" : username
+        }, {
+            "password" : 0,
+            "_id" : 0
+        })[0]
+
+        return jsonify(retJson)
+
+class TakeLoan(Resource):
+    def post(self):
+        postedData = request.get_json()
+
+        username = postedData["username"]
+        password = postedData["password"]
+        money = postedData["amount"]
+
+        retJson, error = verifyCredentials(username, password)
+
+        if error:
+            return jsonify(retJson)
+        
+        cash = cashWithUser(username)
+        debt = debtWithUser(username)
+        updateAccount(username, cash + money)
+        updateDebt(username, debt + money)
+
+        return jsonify(generateReturnDictionary(200, "Loan added to your account."))
+        
+
+
+
         
 
     
