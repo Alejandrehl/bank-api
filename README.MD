@@ -5,6 +5,7 @@
 
 ### Important
 - web/app.py.
+- For test "production server" use ec2-35-165-231-168.us-west-2.compute.amazonaws.com:5000/ instead of http://0.0.0.0:5000/
 
 ### In the following APIS, you must pass two arguments: username and password.
 - In Postman send as { "username" : "Alejandro", "password" : "Alejandro"} // JSON(application/json)
